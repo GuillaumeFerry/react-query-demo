@@ -8,8 +8,7 @@ function App() {
     fetchTodos
   )
 
-    console.log(data)
-    console.log('err', error)
+  console.log(data)
 
   return (
     <>
