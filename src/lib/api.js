@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// AIRTABLE API
 const API_URL = "https://api.airtable.com/v0"
 const BASE = "appZi9IKweICZrglI"
 const TABLE = "Table%201"
@@ -12,9 +13,10 @@ const AUTH_HEADER = {
 export const fetchTodos = async(key) => {
     let url = `${API_URL}/${BASE}/${TABLE}/?${VIEW}`
 
-    let todos = await axios.get(url, { 
+    // destructuring data to avoid data.data
+    let { data } = await axios.get(url, { 
         headers: { ...AUTH_HEADER }
     })
 
-    return todos
+    return data
 }

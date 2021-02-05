@@ -8,16 +8,23 @@ function App() {
     fetchTodos
   )
 
+  console.log(isLoading)
   console.log(data)
+
+  if (isLoading) {
+    return <span>Loading...</span>
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>
+  }
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
-      {isError && {error}}
-      {data?.data?.records && 
+      {data?.records && 
         <ul>
           {
-            data.data.records.map( rec =>
+            data.records.map( rec =>
               <li key={rec.id}>{rec.fields.text}</li>
             )
           }
