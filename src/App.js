@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'
+import { useQuery } from 'react-query'
+import { fetchTodos } from './lib/api'
 
 function App() {
+  const { data, error, isLoading, isError } = useQuery(
+    'todos',
+    fetchTodos
+  )
+
+    console.log(data)
+    console.log('err', error)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {isLoading && <p>Loading...</p>}
+      {isError && {error}}
+      {data?.data?.records && 
+        <ul>
+          {
+            data.data.records.map( rec =>
+              <li key={rec.id}>{rec.fields.text}</li>
+            )
+          }
+        </ul>
+      }
+    </>
+    );
 }
 
 export default App;
