@@ -10,6 +10,7 @@ const AUTH_HEADER = {
     Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_TOKEN}`
 }
 
+///// GET //////
 export const fetchTodos = async( pageParam ) => {
     // useQuery
     // let url = `${API_URL}/${BASE}/${TABLE}/?${VIEW}`
@@ -28,6 +29,7 @@ export const fetchTodos = async( pageParam ) => {
     return data
 }
 
+///// POST //////
 export const createTodo = async( fields ) => {
     let url = `${API_URL}/${BASE}/${TABLE}`
 
@@ -41,6 +43,21 @@ export const createTodo = async( fields ) => {
     return data
 }
 
+///// PATCH //////
+export const updateTodo = async( {id, fields} ) => {
+    let url = `${API_URL}/${BASE}/${TABLE}/${id}`
+
+    let data = await axios.patch(url, {fields}, {
+        headers: {
+            ...AUTH_HEADER,
+            'Content-Type': 'application/json'
+        }
+    })
+
+    return data
+}
+
+///// DELETE //////
 export const deleteTodo = async( id ) => {
     let url = `${API_URL}/${BASE}/${TABLE}/${id}`
 
