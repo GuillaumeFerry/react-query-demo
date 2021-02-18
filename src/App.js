@@ -3,6 +3,7 @@ import './App.css'
 import { useInfiniteQuery } from 'react-query'
 import { fetchTodos } from './lib/api'
 import { AddTodo } from './AddTodo'
+import { TodoItem } from './TodoItem'
 
 function App() {
   // Simple Query
@@ -46,8 +47,8 @@ function App() {
           data.pages.map((group, i) => (
             <React.Fragment key={i}>
               {
-                group.records.map( rec =>
-                  <li key={rec.id}>{rec.fields.text}</li>
+                group.records.map( ({id, fields}) =>
+                  <TodoItem key={id} id={id} {...fields} />
                 )
               }
             </React.Fragment>

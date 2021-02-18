@@ -7,6 +7,7 @@ export const AddTodo = () => {
     const queryClient = useQueryClient()
 
     const { mutate } = useMutation(createTodo, {
+        // refetch todos after mutation
         onSuccess: () => queryClient.invalidateQueries('todos')
     })
 

@@ -38,7 +38,15 @@ export const createTodo = async( fields ) => {
         }
     })
 
-    console.log('DATA SEND:', data)
+    return data
+}
+
+export const deleteTodo = async( id ) => {
+    let url = `${API_URL}/${BASE}/${TABLE}/${id}`
+
+    let data = await axios.delete(url, {
+        headers: { ...AUTH_HEADER }
+    })
 
     return data
 }
