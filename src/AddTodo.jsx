@@ -1,11 +1,14 @@
 import React, { useRef } from 'react'
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 import { createTodo } from './lib/api' 
 
 export const AddTodo = () => {
     const inputRef = useRef()
+    const queryClient = useQueryClient()
 
-    const { mutate } = useMutation(createTodo)
+    const { mutate } = useMutation(createTodo, {
+        onSuccess: () => queryClient.invalidateQueries('todos')
+    })
 
     const onAdd = () => {
         mutate({text: inputRef.current.value})

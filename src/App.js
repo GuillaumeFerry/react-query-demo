@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import { useQuery, useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery } from 'react-query'
 import { fetchTodos } from './lib/api'
 import { AddTodo } from './AddTodo'
 
