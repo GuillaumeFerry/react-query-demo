@@ -10,8 +10,15 @@ const AUTH_HEADER = {
     Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_TOKEN}`
 }
 
-export const fetchTodos = async(key) => {
-    let url = `${API_URL}/${BASE}/${TABLE}/?${VIEW}`
+export const fetchTodos = async( pageParam ) => {
+    // useQuery
+    // let url = `${API_URL}/${BASE}/${TABLE}/?${VIEW}`
+
+    //useInfiniteQuery
+    let url = `${API_URL}/${BASE}/${TABLE}/?${VIEW}&pageSize=${2}`
+    if (pageParam){
+        url = url + `&offset=${pageParam}`
+    }
 
     // destructuring data to avoid data.data
     let { data } = await axios.get(url, { 
