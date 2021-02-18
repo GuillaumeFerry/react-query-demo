@@ -2,6 +2,7 @@ import React from 'react'
 import './App.css'
 import { useQuery, useInfiniteQuery } from 'react-query'
 import { fetchTodos } from './lib/api'
+import { AddTodo } from './AddTodo'
 
 function App() {
   // Simple Query
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <>
+      <AddTodo/>
       {data?.pages && 
         <ul>
           {

@@ -27,3 +27,18 @@ export const fetchTodos = async( pageParam ) => {
 
     return data
 }
+
+export const createTodo = async( fields ) => {
+    let url = `${API_URL}/${BASE}/${TABLE}`
+
+    let data = await axios.post(url, {fields}, {
+        headers: {
+            ...AUTH_HEADER,
+            'Content-Type': 'application/json'
+        }
+    })
+
+    console.log('DATA SEND:', data)
+
+    return data
+}
