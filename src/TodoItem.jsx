@@ -21,6 +21,9 @@ export const TodoItem = ({id, text, completed}) => {
 
     const onCheck = (event) => {
         checkMutation.mutate({id, fields: {completed: event.target.checked}})
+        // get cached data //
+        // const cacheData = queryClient.getQueryData('todos')
+        // console.log('CACHE:', cacheData)
     }
 
     return (
